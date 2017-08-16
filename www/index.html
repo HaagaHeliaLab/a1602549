@@ -1,0 +1,374 @@
+<html>
+<head>
+    <!--<meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *; img-src 'self' data: content:;">-->
+    <meta name="format-detection" content="telephone=no">
+    <meta name="msapplication-tap-highlight" content="no">
+    <meta name="viewport"
+          content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+    <title>Welcome to iNails</title>
+    <link rel="stylesheet" href="css/themes/iNails.min.css"/>
+    <link rel="stylesheet" href="js/jquery/jquery.mobile.icons-1.4.5.css"/>
+    <link rel="stylesheet" href="js/jquery/jquery.mobile.structure-1.4.5.css"/>
+    <link rel="stylesheet" href="js/jquery/jquery.mobile-1.4.5.css"/>
+    <link rel="stylesheet" href="css/themes/jquery.mobile.icons.min.css"/>
+    <script src="js/jquery-1.11.1.js"></script>
+    <script src="js/jquery/jquery.mobile-1.4.5.js"></script>
+</head>
+<body>
+<!--Home page-->
+<div data-role="page" data-theme="a" id="home">
+    <div data-role="header" data-grid="b">
+        <ul data-position="inline">
+            <li data-position="center"><a
+                    class="ui-shadow ui-btn ui-corner-all ui-icon-bullets ui-btn-icon-notext ui-btn-inline">Button</a>
+            </li>
+            <li data-position="center"><a href="#home"
+                                          class="ui-shadow ui-btn ui-corner-all ui-icon-home ui-btn-icon-notext ui-btn-inline">Button</a>
+            </li>
+            <li data-position="center"><a
+                    class="ui-shadow ui-btn ui-corner-all ui-icon-gear ui-btn-icon-notext ui-btn-inline">Button</a></li>
+        </ul>
+    </div>
+    <div data-role="content" data-theme="a">
+        <button class="ui-bar-a"><a href="#reservation">Reservation</a></button>
+        <button class="ui-bar-a"><a href="#tracking">Tracking</a></button>
+        <button class="ui-bar-a"><a href="#setting">Setting</a></button>
+    </div>
+    <div data-role="footer">
+        <h5>Copyright©inails.fi 2017</h5>
+    </div>
+</div>
+<!-- Reservation page -->
+<div data-role="page" data-theme="a" id="reservation">
+    <!--Reservation header-->
+    <div data-role="header" data-position="inline">
+        <div class="ui-grid-b">
+            <div class="ui-block-a center"><a
+                    class="ui-shadow ui-btn ui-corner-all ui-icon-bullets ui-btn-icon-notext ui-btn-inline">Button</a>
+            </div>
+            <div class="ui-block-b"><a href="#home"
+                                       class="ui-shadow ui-btn ui-corner-all ui-icon-home ui-btn-icon-notext ui-btn-inline">Button</a>
+            </div>
+            <div class="ui-block-c"><a
+                    class="ui-shadow ui-btn ui-corner-all ui-icon-gear ui-btn-icon-notext ui-btn-inline">Button</a>
+            </div>
+        </div>
+    </div>
+    <!--Reservation content-->
+    <div data-role="content" data-theme="a">
+        <div data-role="collapsibleset">
+            <!--Category collapsible-->
+            <div data-role="collapsible" id="categoryCollapsible">
+                <h2>Category</h2>
+                <fieldset data-role="controlgroup" data-iconpos="right" id="fieldsetCategory">
+
+                </fieldset>
+            </div>
+            <!--Service collapsible-->
+            <div data-role="collapsible" id="serviceCollapsible">
+                <h2>Service</h2>
+                <fieldset data-role="controlgroup" data-iconpos="right" id="fieldsetService">
+
+                </fieldset>
+            </div>
+            <!--Artist collapsible-->
+            <div data-role="collapsible" id="artistCollapsible">
+                <h2>Artist</h2>
+                <fieldset data-role="controlgroup" id="fieldsetArtist">
+
+                </fieldset>
+            </div>
+            <!--Form collapsible-->
+            <div data-role="collapsible">
+                <h2>Customer's information</h2>
+                <ul data-role="listview">
+                    <li>
+                        <label for="name">Name</label>
+                        <input name="name" id="name" data-clear-btn="true">
+                    </li>
+                    <li>
+                        <label for="address">Address</label>
+                        <input name="address" id="address" data-clear-btn="true">
+                    </li>
+                    <li>
+                        <label for="phone">Phone</label>
+                        <input name="phone" id="phone" data-clear-btn="true">
+                    </li>
+                    <li>
+                        <label for="email">Email</label>
+                        <input name="email" id="email" data-clear-btn="true">
+                    </li>
+                    <li class="ui-body ui-body-a">
+                        <fieldset class="ui-grid-a">
+                            <div class="ui-block-a">
+                                <input type="button" value="Cancel"
+                                       class="ui-btn ui-icon-delete ui-btn-icon-left ui-corner-all ui-btn-a">
+                            </div>
+                            <div class="ui-block-b">
+                                <input type="button" value="Submit"
+                                       class="ui-btn ui-icon-arrow-d ui-btn-icon-right ui-corner-all ui-btn-a">
+                            </div>
+                        </fieldset>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!--Reservation footer-->
+    <div data-role="footer">
+        <h5>Copyright©inails.fi 2017</h5>
+    </div>
+</div>
+
+<!-- Tracking page -->
+<div data-role="page" data-theme="a" id="tracking">
+    <div data-role="header">
+        <div class="ui-grid-b center" data-position="inline">
+            <div class="ui-block-a"><a
+                    class="ui-shadow ui-btn ui-corner-all ui-icon-bullets ui-btn-icon-notext ui-btn-inline">Button</a>
+            </div>
+            <div class="ui-block-b"><a href="#home"
+                                       class="ui-shadow ui-btn ui-corner-all ui-icon-home ui-btn-icon-notext ui-btn-inline">Button</a>
+            </div>
+            <div class="ui-block-c"><a
+                    class="ui-shadow ui-btn ui-corner-all ui-icon-gear ui-btn-icon-notext ui-btn-inline">Button</a>
+            </div>
+        </div>
+    </div>
+    <div data-role="content" data-theme="a">
+        <div class="ui-grid-a" data-position="group">
+            <input type="search" name="order-number" placeholder="Enter your order number"/>
+            <!--<input type="button" name="trackBtn" value="Track" />-->
+            <a id="trackBtn" href="#invoicePopup" data-rel="popup" data-transition="slideup" data-position-to="window"
+               class="ui-btn ui-corner-all ui-shadow ui-icon-search ui-btn-icon-left ui-btn-a">Track</a>
+        </div>
+        <div id="invoicePopup" data-role="popup" class="ui-corner-all" data-overlay-theme="a">
+            <div data-role="header">
+                <h1>Invoice</h1>
+            </div>
+            <div role="main" class="ui-content">
+                <table data-role="table" class="ui-responsive">
+                    <thead>
+                    <tr>
+                        <th>Order number</th>
+                        <td id="orderNumberTd" class="invoiceTd"></td>
+                    </tr>
+                    <tr>
+                        <th>Order date</th>
+                        <td id="orderDateTd" class="invoiceTd"></td>
+                    </tr>
+                    <tr>
+                        <th>Status</th>
+                        <td id="orderStatusTd" class="invoiceTd"></td>
+                    </tr>
+                    <tr>
+                        <th>Service</th>
+                        <td id="servicesTd" class="invoiceTd"></td>
+                    </tr>
+                    <tr>
+                        <th>Estimated time</th>
+                        <td id="estimatedTimeTd" class="invoiceTd"></td>
+                    </tr>
+                    <tr>
+                        <th>Total price</th>
+                        <td id="totalPriceTd" class="invoiceTd"></td>
+                    </tr>
+                    <tr>
+                        <th>Artist's name</th>
+                        <td id="artistNameTd" class="invoiceTd"></td>
+                    </tr>
+                    <tr>
+                        <th>Customer's name</th>
+                        <td id="customerNameTd" class="invoiceTd"></td>
+                    </tr>
+                    <tr>
+                        <th>Customer's phone</th>
+                        <td id="customerPhoneTd" class="invoiceTd"></td>
+                    </tr>
+                    </thead>
+                </table>
+            </div>
+            <div data-role="footer">
+                <h1>Thank you and see you again!</h1>
+            </div>
+        </div>
+
+    </div>
+    <div data-role="footer">
+        <h5>Copyright©inails.fi 2017</h5>
+    </div>
+</div>
+
+<!-- Setting page-->
+<div data-role="page" data-theme="a" id="setting">
+    <div data-role="header" data-position="inline">
+        <div class="ui-grid-b">
+            <div class="ui-block-a"><a
+                    class="ui-shadow ui-btn ui-corner-all ui-icon-bullets ui-btn-icon-notext ui-btn-inline">Button</a>
+            </div>
+            <div class="ui-block-b"><a href="#home"
+                                       class="ui-shadow ui-btn ui-corner-all ui-icon-home ui-btn-icon-notext ui-btn-inline">Button</a>
+            </div>
+            <div class="ui-block-c"><a
+                    class="ui-shadow ui-btn ui-corner-all ui-icon-gear ui-btn-icon-notext ui-btn-inline">Button</a>
+            </div>
+        </div>
+    </div>
+    <div data-role="footer">
+        <h5>Copyright©inails.fi 2017</h5>
+    </div>
+</div>
+<script type="text/javascript" src="js/index.js"></script>
+</body>
+<script>
+    /*Declare common variables*/
+    var URL = "http://localhost:8181/rest/api";
+    /*Get month name*/
+    var getMonthName = function (monthNumber) {
+        var monthArray = [["01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"], ["January", "February", "March",
+            "April", "May", "June", "July",
+            "August", "September", "October",
+            "November", "December"]];
+        for (var i = 0; i < monthArray[0].length; i++) {
+            if (monthNumber == monthArray[0][i])
+                return monthArray[1][i];
+        }
+    };
+    /*Format date*/
+    var formatDate = function (rawDate) {
+        if (rawDate != null) {
+            var day = rawDate.substring(8, 10);
+            var year = rawDate.substring(0, 4);
+            var month = getMonthName(rawDate.substring(5, 7));
+            return (day + " " + month + " " + year);
+        }
+    };
+    /*Fetch order details from API by order number*/
+    var getOrderDetails = function (orderNumber) {
+        return $.ajax({
+            url: URL + "/invoices/" + orderNumber,
+            method: "GET",
+            contentType: "application/json",
+            dataType: "json",
+            timeout: "10000",
+            error: function (xhr) {
+                //$("#invoicePopup").popup({disabled: true});
+                alert("Error function is running " + xhr.statusText);
+            }
+        });
+    };
+    /*Fetch all category from API*/
+    var findAllCategory = function () {
+        return $.ajax({
+            url: URL + "/categories",
+            method: "GET",
+            contentType: "application/json",
+            dataType: "json",
+            timeout: "10000",
+            error: function (xhr) {
+                alert("Error function is running " + xhr.statusText);
+            }
+        });
+    };
+
+
+    /*Fetch all services based on multiple selected categories*/
+    var findAllServiceBySelectedCategories = function (categoryIDs) {
+        return $.ajax({
+            url: URL + "/categories/services?categoryid="+categoryIDs.toString(),
+            method: "GET",
+            contentType: "application/json",
+            dataType: "json",
+            timeout: "10000",
+            error: function (xhr) {
+                alert("Error function is running " + xhr.statusText);
+            }
+        });
+    };
+
+    /*Fetch all artists*/
+    var findAllArtist = function () {
+        return $.ajax({
+            url: URL + "/artists",
+            method: "GET",
+            contentType: "application/json",
+            dataType: "json",
+            timeout: "10000",
+            error: function (xhr) {
+                alert("Error function is running " + xhr.statusText);
+            }
+        });
+    };
+
+    /*Show order details details by given order number*/
+    $("#trackBtn").on("click", function () {
+        var orderNumber = $(':input[name="order-number"]').val();
+        getOrderDetails(orderNumber).success(function (data) {
+            if (data.order.orderID == 0) {
+                //$("#invoicePopup").popup({disabled: true});
+                alert("No order found with given order number");
+            } else {
+                $(".invoiceTd").text(" ");
+                $("#orderNumberTd").text(data.order.orderID);
+                $("#orderDateTd").text(formatDate(data.order.orderDate));
+                $("#orderStatusTd").text(data.status.name);
+                $("#servicesTd").text(data.services);
+                $("#artistNameTd").text(data.artist.name);
+                $("#totalPriceTd").text(data.totalPayment + "\u20AC");
+                $("#estimatedTimeTd").text(data.duration + " minutes");
+                $("#customerNameTd").text(data.customer.name);
+                $("#customerPhoneTd").text(data.customer.phone);
+            }
+        });
+    });
+    /*Show category when expanded*/
+    $("#categoryCollapsible").collapsible({
+        expand: function (event, ui) {
+            $("#fieldsetCategory").html("");
+            findAllCategory().success(function (data) {
+                if (data.isArray || data.length != 0) {
+                    for (var j = 0; j < data.length; j++) {
+                        $("#fieldsetCategory").append(
+                        '<input type="checkbox" name="' + data[j].categoryID + '" id="' + data[j].categoryID + '">' +
+                        '<label for="' + data[j].categoryID + '">' + data[j].name + '</label>'
+                        );
+                    }
+
+                }
+            });
+        },
+    });
+
+    /*Show service list with selected categories*/
+    $("#serviceCollapsible").collapsible({
+        expand: function (event, ui) {
+            $("#fieldsetService").html("");
+            findAllServiceBySelectedCategories([1,2,3]).success(function (data) {
+                if(data.isArray || data.length != 0){
+                    for(var i=0; i < data.length; i++) {
+                        $("#fieldsetService").append(
+                            data[i].name
+                        );
+                    }
+                }
+            })
+        }
+    });
+
+    $("#artistCollapsible").collapsible({
+        expand: function (event,ui) {
+            $("#fieldsetArtist").html("");
+            findAllArtist().success(function (data) {
+                if(data.isArray || data.length != 0){
+                    for(var i=0; i < data.length; i++) {
+                        $("#fieldsetArtist").append(
+                            data[i].name
+                        );
+                    }
+                }
+            })
+        }
+    });
+
+</script>
+</html>

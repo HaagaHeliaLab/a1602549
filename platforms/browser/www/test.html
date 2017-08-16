@@ -1,0 +1,193 @@
+<html>
+<head>
+    <!--<meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *; img-src 'self' data: content:;">-->
+    <meta name="format-detection" content="telephone=no">
+    <meta name="msapplication-tap-highlight" content="no">
+    <meta name="viewport"
+          content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+    <title>Welcome to iNails</title>
+    <link rel="stylesheet" href="css/themes/iNails.min.css"/>
+    <link rel="stylesheet" href="js/jquery/jquery.mobile.structure-1.4.5.css"/>
+    <link rel="stylesheet" href="js/jquery/jquery.mobile-1.4.5.css"/>
+    <link rel="stylesheet" href="css/themes/jquery.mobile.icons.min.css"/>
+    <script src="js/jquery-1.11.1.js"></script>
+    <script src="js/jquery/jquery.mobile-1.4.5.js"></script>
+</head>
+<body>
+<!--Home page-->
+<div data-role="page" data-theme="a" id="home">
+    <div data-role="header" data-grid="b">
+        <ul data-position="inline">
+            <li data-position="center"><a
+                    class="ui-shadow ui-btn ui-corner-all ui-icon-bullets ui-btn-icon-notext ui-btn-inline">Button</a>
+            </li>
+            <li data-position="center"><a href="#home"
+                                          class="ui-shadow ui-btn ui-corner-all ui-icon-home ui-btn-icon-notext ui-btn-inline">Button</a>
+            </li>
+            <li data-position="center"><a
+                    class="ui-shadow ui-btn ui-corner-all ui-icon-gear ui-btn-icon-notext ui-btn-inline">Button</a></li>
+        </ul>
+    </div>
+    <div data-role="content" data-theme="a">
+        <button class="ui-bar-a"><a href="#reservation">Reservation</a></button>
+        <button class="ui-bar-a"><a href="#tracking">Tracking</a></button>
+        <button class="ui-bar-a"><a href="#setting">Setting</a></button>
+    </div>
+    <div data-role="footer">
+        <h5>Copyright©inails.fi 2017</h5>
+    </div>
+</div>
+<!-- Reservation page -->
+<div data-role="page" data-theme="a" id="reservation">
+    <div data-role="header" data-position="inline">
+        <div class="ui-grid-b">
+            <div class="ui-block-a center"><a
+                    class="ui-shadow ui-btn ui-corner-all ui-icon-bullets ui-btn-icon-notext ui-btn-inline">Button</a>
+            </div>
+            <div class="ui-block-b"><a href="#home"
+                                       class="ui-shadow ui-btn ui-corner-all ui-icon-home ui-btn-icon-notext ui-btn-inline">Button</a>
+            </div>
+            <div class="ui-block-c"><a
+                    class="ui-shadow ui-btn ui-corner-all ui-icon-gear ui-btn-icon-notext ui-btn-inline">Button</a>
+            </div>
+        </div>
+    </div>
+    <div data-role="footer">
+        <h5>Copyright©inails.fi 2017</h5>
+    </div>
+</div>
+
+<!-- Tracking page -->
+<div data-role="page" data-theme="a" id="tracking">
+    <div data-role="header">
+        <div class="ui-grid-b center" data-position="inline">
+            <div class="ui-block-a"><a
+                    class="ui-shadow ui-btn ui-corner-all ui-icon-bullets ui-btn-icon-notext ui-btn-inline">Button</a>
+            </div>
+            <div class="ui-block-b"><a href="#home"
+                                       class="ui-shadow ui-btn ui-corner-all ui-icon-home ui-btn-icon-notext ui-btn-inline">Button</a>
+            </div>
+            <div class="ui-block-c"><a
+                    class="ui-shadow ui-btn ui-corner-all ui-icon-gear ui-btn-icon-notext ui-btn-inline">Button</a>
+            </div>
+        </div>
+    </div>
+    <div data-role="content" data-theme="a">
+        <div class="ui-grid-a" data-position="group">
+            <input type="search" name="order-number" placeholder="Enter your order number"/>
+            <!--<input type="button" name="trackBtn" value="Track" />-->
+            <a id="trackBtn" href="#invoicePopup" data-rel="popup" data-transition="slideup"
+               class="ui-btn ui-corner-all ui-shadow ui-icon-search ui-btn-icon-left ui-btn-a">Track</a>
+        </div>
+        <div data-role="popup" id="invoicePopup">
+            <div data-role="header">
+                <h1>Invoice</h1>
+            </div>
+            <div data-role="main">
+                <table data-role="table" class="ui-responsive">
+                    <thead>
+                    <tr>
+                        <th>Order number</th>
+                        <td id="orderNumberTd"></td>
+                    </tr>
+                    <tr>
+                        <th>Order date</th>
+                        <td id="orderDateTd"></td>
+                    </tr>
+                    <tr>
+                        <th>Status</th>
+                        <td id="orderStatusTd"></td>
+                    </tr>
+                    <tr>
+                        <th>Service</th>
+                        <td id="servicesTd"></td>
+                    </tr>
+                    <tr>
+                        <th>Estimated time</th>
+                        <td id="estimatedTimeTd"></td>
+                    </tr>
+                    <tr>
+                        <th>Total price</th>
+                        <td id="totalPriceTd"></td>
+                    </tr>
+                    <tr>
+                        <th>Artist's name</th>
+                        <td id="artistNameTd"></td>
+                    </tr>
+                    <tr>
+                        <th>Customer's name</th>
+                        <td id="customerNameTd"></td>
+                    </tr>
+                    <tr>
+                        <th>Customer's phone</th>
+                        <td id="customerPhoneTd"></td>
+                    </tr>
+                    </thead>
+                </table>
+            </div>
+            <div data-role="footer">
+                <h1>Thank you and see you again!</h1>
+            </div>
+        </div>
+
+    </div>
+    <div data-role="footer">
+        <h5>Copyright©inails.fi 2017</h5>
+    </div>
+</div>
+
+<!-- Setting page-->
+<div data-role="page" data-theme="a" id="setting">
+    <div data-role="header" data-position="inline">
+        <div class="ui-grid-b">
+            <div class="ui-block-a"><a
+                    class="ui-shadow ui-btn ui-corner-all ui-icon-bullets ui-btn-icon-notext ui-btn-inline">Button</a>
+            </div>
+            <div class="ui-block-b"><a href="#home"
+                                       class="ui-shadow ui-btn ui-corner-all ui-icon-home ui-btn-icon-notext ui-btn-inline">Button</a>
+            </div>
+            <div class="ui-block-c"><a
+                    class="ui-shadow ui-btn ui-corner-all ui-icon-gear ui-btn-icon-notext ui-btn-inline">Button</a>
+            </div>
+        </div>
+    </div>
+    <div data-role="footer">
+        <h5>Copyright©inails.fi 2017</h5>
+    </div>
+</div>
+
+</body>
+<script>
+    /*Declare common variables*/
+    var URL = "https://inailsapi.herokuapp.com/rest/api";
+    /*Fetch order details from API by order number*/
+    var getOrderDetails = function (orderNumber) {
+        return $.ajax({
+            url: URL + "/invoices/" + orderNumber,
+            method: "GET",
+            contentType: "application/json",
+            dataType: "json",
+            timeout: "10000",
+            error: function (xhr) {
+                alert("Error function is running " + xhr.statusText);
+            }
+        });
+    };
+
+    /*Show order details details by given order number*/
+    $("#trackBtn").on("click", function () {
+        var orderNumber = $(':input[name="order-number"]').val();
+        getOrderDetails(orderNumber).success(function (data) {
+            if(data.order.orderID == 0)
+                alert("No order found with given order number");
+            else {
+                $("#orderNumberTd").val(data.order.orderID);
+                $("#orderDateTd").val(data.order.orderDate);
+                $("#orderStatusTd").val(data.order.status);
+                $("#servicesTd").val(data.services);
+                $("#invoicePopup").open();
+            }
+        });
+    })
+</script>
+</html>
