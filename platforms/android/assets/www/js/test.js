@@ -18,4 +18,5 @@ var formatDate = function (rawDate) {
 console.log(formatDate(str));
 
 var array = [1,2,3];
-console.log(array.toString())
+console.log(array.toString());
+console.log([1,2,3].toString());

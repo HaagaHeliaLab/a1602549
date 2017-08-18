@@ -65,12 +65,18 @@
                 </fieldset>
             </div>
             <!--Service collapsible-->
-            <div data-role="collapsible">
+            <div data-role="collapsible" id="serviceCollapsible">
                 <h2>Service</h2>
+                <fieldset data-role="controlgroup" data-iconpos="right" id="fieldsetService">
+
+                </fieldset>
             </div>
             <!--Artist collapsible-->
-            <div data-role="collapsible">
+            <div data-role="collapsible" id="artistCollapsible">
                 <h2>Artist</h2>
+                <fieldset data-role="controlgroup" id="fieldsetArtist">
+
+                </fieldset>
             </div>
             <!--Form collapsible-->
             <div data-role="collapsible">
@@ -213,9 +219,11 @@
     </div>
 </div>
 <script type="text/javascript" src="js/index.js"></script>
+
 </body>
 <script>
     /*Declare common variables*/
+    //var URL = "https://inailsapi.herokuapp.com/rest/api";
     var URL = "http://localhost:8181/rest/api";
     /*Get month name*/
     var getMonthName = function (monthNumber) {
@@ -264,17 +272,12 @@
             }
         });
     };
-    /*Generate an array to string to pass through URL*/
-    var generateUrlFromArray = function (array) {
-        for(var k=0; k<array.length; k++){
-            array
-        }
-    };
+
 
     /*Fetch all services based on multiple selected categories*/
-    var findAllCategory = function (categoryIDs) {
+    var findAllServiceBySelectedCategories = function (categoryIDs) {
         return $.ajax({
-            url: URL + "/categories/services?categoryid=",
+            url: URL + "/categories/services?categoryid="+categoryIDs.toString(),
             method: "GET",
             contentType: "application/json",
             dataType: "json",
@@ -285,6 +288,19 @@
         });
     };
 
+    /*Fetch all artists*/
+    var findAllArtist = function () {
+        return $.ajax({
+            url: URL + "/artists",
+            method: "GET",
+            contentType: "application/json",
+            dataType: "json",
+            timeout: "10000",
+            error: function (xhr) {
+                alert("Error function is running " + xhr.statusText);
+            }
+        });
+    };
 
     /*Show order details details by given order number*/
     $("#trackBtn").on("click", function () {
@@ -326,6 +342,35 @@
     });
 
     /*Show service list with selected categories*/
+    $("#serviceCollapsible").collapsible({
+        expand: function (event, ui) {
+            $("#fieldsetService").html("");
+            findAllServiceBySelectedCategories([1,2,3]).success(function (data) {
+                if(data.isArray || data.length != 0){
+                    for(var i=0; i < data.length; i++) {
+                        $("#fieldsetService").append(
+                            data[i].name
+                        );
+                    }
+                }
+            })
+        }
+    });
+
+    $("#artistCollapsible").collapsible({
+        expand: function (event,ui) {
+            $("#fieldsetArtist").html("");
+            findAllArtist().success(function (data) {
+                if(data.isArray || data.length != 0){
+                    for(var i=0; i < data.length; i++) {
+                        $("#fieldsetArtist").append(
+                            data[i].name
+                        );
+                    }
+                }
+            })
+        }
+    });
 
 </script>
 </html>

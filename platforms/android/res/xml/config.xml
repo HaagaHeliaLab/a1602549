@@ -4,15 +4,15 @@
         <param name="android-package" value="org.apache.cordova.whitelist.WhitelistPlugin" />
         <param name="onload" value="true" />
     </feature>
-    <name>HelloCordova</name>
+    <name>iNails</name>
     <description>
-        A sample Apache Cordova application that responds to the deviceready event.
+        This application used for any nails store.
     </description>
-    <author email="dev@cordova.apache.org" href="http://cordova.io">
+    <author email="duc.dinh2@myy.haaga-helia.fi" href="https://www.linkedin.com/in/dinh-duc-thinh-a7665953/">
         Apache Cordova Team
     </author>
     <content src="index.html" />
-    <access origin="http://localhost:8181/*" />
+    <access origin="http://localhost:8181/**" />
     <access origin="hhttps://inailsapi.herokuapp.com/**" />
     <allow-navigation href="*" />
     <allow-intent href="http://*/*" />
