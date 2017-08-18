@@ -1,6 +1,8 @@
 # iNails
 
-This application is used for Nails service, from that service's owner can control their services easier and give client more experince.
+#Idea
+
+- This application is used for Nails service, from that service's owner can control their services easier and give client more experince.
 
 #Feature
 
@@ -16,7 +18,7 @@ This application is used for Nails service, from that service's owner can contro
 
 #Platform support
 
-iOS, Android, Browser...etc <br />
+- iOS, Android, Browser...etc <br />
 
 #Author
 
