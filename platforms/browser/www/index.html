@@ -68,19 +68,25 @@
             <!--Category collapsible-->
             <div data-role="collapsible" id="categoryCollapsible">
                 <h2>Category</h2>
-                    <!--fetch data from API into here-->
                     <fieldset data-role="controlgroup" id="categoryFieldset">
-
+                        <!--fetch data from API into here-->
                     </fieldset>
-
-                    <input type="button" data-inline="true" value="Select" id="categorySelectBtn" data-theme="b">
+                    <div class="ui-grid-a">
+                        <div class="ui-block-a"><button id="categorySelectBtn">Select</button></div>
+                    </div>
+                    <div data-role="popup" id="categoryErrorPopup">
+                        <p>Sorry, no service found</p>
+                    </div>
             </div>
             <!--Service collapsible-->
             <div data-role="collapsible" id="serviceCollapsible">
                 <h2>Service</h2>
-                <fieldset data-role="controlgroup" data-iconpos="right" id="fieldsetService">
-
+                <fieldset data-role="controlgroup" id="serviceFieldset">
+                    <!--fetch data from API into here-->
                 </fieldset>
+                <div class="ui-grid-a">
+                    <div class="ui-block-a"><button id="serviceSelectBtn">Select</button></div>
+                </div>
             </div>
             <!--Artist collapsible-->
             <div data-role="collapsible" id="artistCollapsible">
@@ -114,10 +120,22 @@
                         </select>
                     </div>
                 </div>
-                <input type="button" data-inline="true" value="select" id="dateSelectBtn" data-theme="b">
+                <!--<input type="button" data-inline="true" value="select" id="dateSelectBtn" data-theme="b">-->
+                <a href="#timeConfirmPopup" data-rel="popup" data-position-to="window" data-transition="fade" class="ui-btn ui-corner-all ui-shadow ui-btn-inline">Select</a>
+                <!--Popup confirm time reservation-->
+                <div data-role="popup" id="timeConfirmPopup">
+                    <div data-role="header">
+                        <h4>Reservation</h4>
+                    </div>
+                    <h4>Are you want to select this time</h4>
+                    <div class="ui-grid-a" style="text-align: center">
+                      <a href="#" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-btn-b ui-icon-back ui-btn-icon-left" data-rel="back">No</a>
+                      <a href="#" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-btn-b ui-icon-carat-d ui-btn-icon-left" data-rel="back" id="yesTimeA">Yes</a>
+                    </div>
+                </div>
             </div>
             <!--Form collapsible-->
-            <div data-role="collapsible">
+            <div data-role="collapsible" id="formCollapsible">
                 <h2>Contact</h2>
                 <ul data-role="listview">
                     <li>
@@ -139,11 +157,11 @@
                     <li class="ui-body ui-body-a">
                         <fieldset class="ui-grid-a">
                             <div class="ui-block-a">
-                                <input type="button" value="Cancel"
+                                <input type="button" value="Cancel" name="cancel"
                                        class="ui-btn ui-icon-delete ui-btn-icon-left ui-corner-all ui-btn-a">
                             </div>
                             <div class="ui-block-b">
-                                <input type="button" value="Submit"
+                                <input type="button" value="Submit" name="submit"
                                        class="ui-btn ui-icon-arrow-d ui-btn-icon-right ui-corner-all ui-btn-a" data-theme="b">
                             </div>
                         </fieldset>
@@ -180,12 +198,12 @@
             <a id="trackBtn" href="#invoicePopup" data-rel="popup" data-transition="slideup" data-position-to="window"
                class="ui-btn ui-corner-all ui-shadow ui-icon-search ui-btn-icon-left ui-btn-a">Track</a>
         </div>
-        <div id="invoicePopup" data-role="popup" data-overlay-theme="a" style="max-width: 100%; max-height:100%">
+        <div id="invoicePopup" data-role="popup" data-overlay-theme="a">
             <div data-role="header">
                 <h1>Invoice</h1>
             </div>
             <div role="main" class="ui-content">
-                <table data-role="table" class="ui-responsive">
+                <table data-role="table" class="ui-responsive" style="width: 400px; height:400px">
                     <thead>
                     <tr>
                         <th>Order number</th>
@@ -260,7 +278,7 @@
         <h5>Copyright©inails.fi 2017</h5>
     </div>
 </div>
-<script type="text/javascript" src="cordova.js"></script>
+<!--<script type="text/javascript" src="cordova.js"></script>-->
 <script type="text/javascript" src="js/index.js"></script>
 </body>
 <script>
@@ -269,8 +287,19 @@
            findAllArtist();
         });
     /*Declare common variables*/
-    //var URL = "https://inailsapi.herokuapp.com/rest/api";
-    var URL = "http://localhost:8181/rest/api";
+    var URL = "https://inailsapi.herokuapp.com/rest/api";
+    //var URL = "http://localhost:8181/rest/api";
+
+    var serviceCollapsible = "#serviceCollapsible";
+    var categoryCollapsible = "#categoryCollapsible";
+    var categoryFieldset = "#categoryFieldset";
+    var time = $("#timeSelect").val();
+    var date = $(":input[name='dateInput']").val();
+    var name = $("#name").val();
+    var phone = $("#phone").val();
+    var address = $("#address").val();
+    var email = $("#email").val();
+    var artistID = $("#artistSelect").val();
 
 
     /*Get month name*/
@@ -283,6 +312,16 @@
             if (monthNumber == monthArray[0][i])
                 return monthArray[1][i];
         }
+    };
+    /*Get today*/
+    var getToday = function () {
+        var today = new Date();
+        var year = today.getFullYear();
+        var month = today.getMonth()+1;
+        var day = today.getDate();
+        if(month < 10)
+            return (year+"-0"+month+"-"+day);
+        return (year+"-"+month+"-"+day);
     };
     /*Format date*/
     var formatDate = function (rawDate) {
@@ -389,56 +428,25 @@
         });
     });
 
-    /*Show service list with selected categories*/
-    var getServices = function() {
-        $("#categorySelectBtn").click(function () {
-            var $checkbox = $("#categoryFieldset checkbox");
-            $checkbox.each(function () {
-                if (!this.checked) {
-                    alert("Please select category first!");
-                } else {
-                    var categoryID = this.val();
-                    alert(categoryID);
-                }
-
-            });
-        });
-    };
 
     /*Show category when expanded*/
-    $("#categoryCollapsible").collapsible({
+    $(categoryCollapsible).collapsible({
         expand: function (event, ui) {
-            $("#categoryFieldset").html("");
+            $(categoryFieldset).html("");
             findAllCategory().success(function (data) {
                 if (data.isArray || data.length != 0) {
                     for (var j = 0; j < data.length; j++) {
-                        $("#categoryFieldset").append(
+                        $(categoryFieldset).append(
                             '<label for="'+data[j].categoryID+'">'+data[j].name+'</label>'+
-                            '<input type="'+'checkbox'+'"'+' name="'+'favcolor'+'" id='+'"'+data[j].categoryID+'"'+' value="'+data[j].categoryID+'">'
+                            '<input type="'+'checkbox'+'"'+' class="'+'categoryCheckbox'+'" id='+'"'+data[j].categoryID+'"'+' value="'+data[j].categoryID+'">'
                         );
                     }
-                    getService();
-
                 }
             });
         },
     });
 
 
-    /*$("#serviceCollapsible").collapsible({
-        expand: function (event, ui) {
-            $("#fieldsetService").html("");
-            findAllServiceBySelectedCategories([1,2,3]).success(function (data) {
-                if(data.isArray || data.length != 0){
-                    for(var i=0; i < data.length; i++) {
-                        $("#fieldsetService").append(
-                            data[i].name
-                        );
-                    }
-                }
-            })
-        }
-    });*/
 
     $("#artistCollapsible").collapsible({
         expand: function (event,ui) {
@@ -454,6 +462,74 @@
             })
         }
     });
+
+    /*Handle select time event*/
+    $("#yesTimeA").click(function () {
+        $("#formCollapsible").collapsible("expand");
+    });
+
+    $("#categorySelectBtn").click(function () {
+        $(serviceCollapsible).html("");
+        var cateArray = [];
+        $("input.categoryCheckbox:checked").each(function () {
+            cateArray.push(this.value);
+        });
+        if(cateArray.length == 0){
+            $("#serviceCollapsible").collapsible("expand");
+            $("#categoryErrorPopup").popup("open");
+        } else {
+            findAllServiceBySelectedCategories(cateArray).success(function (data) {
+                if(data.length == 0){
+                    $("#categoryErrorPopup").popup("open");
+                } else {
+                    //$(categoryCollapsible).collapsible("collapse");
+                    for(var j=0; j < data.length;j++){
+                        $("#serviceFieldset").text(
+                            '<label for="'+data[j].serviceID+'">'+data[j].name+'</label>'+
+                            '<input type="'+'checkbox'+'"'+' class="'+'serviceCheckbox'+'" id='+'"'+data[j].serviceID+'"'+' value="'+data[j].name+'">'
+                        );
+                    }
+                }
+            });
+        }
+    });
+
+    /*Put new order to server*/
+    var putOrder = function(requestOrder){
+         return  $.ajax({
+            url: URL+"/order",
+            method: "POST",
+            contentType: "application/json;charset=utf8",
+            data: JSON.stringify(requestOrder),
+            error: function (data) {
+                alert("Something gone wrong, try again!");
+            }
+        })
+    };
+
+    var customerObj = {
+        name: name,
+        address: address,
+        phone: phone,
+        email: email
+    };
+    var submit = $(":input[name='submit']");
+    var services = [1,2,3];
+    var timeObj = {
+        time : time,
+        artistID: artistID
+    };
+
+    submit.click(function () {
+         var requestOrder = {
+             services: services,
+             time: timeObj,
+             customer: customerObj,
+             orderDate: getToday()
+         };
+         putOrder(requestOrder)
+    });
+
 
 </script>
 </html>

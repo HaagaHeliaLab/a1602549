@@ -81,7 +81,7 @@
             <!--Service collapsible-->
             <div data-role="collapsible" id="serviceCollapsible">
                 <h2>Service</h2>
-                <fieldset data-role="controlgroup"  id="serviceFieldset">
+                <fieldset data-role="controlgroup" id="serviceFieldset">
                     <!--fetch data from API into here-->
                 </fieldset>
                 <div class="ui-grid-a">
@@ -288,7 +288,8 @@
         });
     /*Declare common variables*/
     //var URL = "https://inailsapi.herokuapp.com/rest/api";
-    var URL = "http://localhost:8181/rest/api";
+    var URL = "http://localhost:8180/rest/api";
+
     var serviceCollapsible = "#serviceCollapsible";
     var categoryCollapsible = "#categoryCollapsible";
     var categoryFieldset = "#categoryFieldset";
@@ -298,6 +299,7 @@
     var phone = $("#phone").val();
     var address = $("#address").val();
     var email = $("#email").val();
+    var artistID = $("#artistSelect").val();
 
 
     /*Get month name*/
@@ -473,17 +475,16 @@
             cateArray.push(this.value);
         });
         if(cateArray.length == 0){
-            $("#serviceCollapsible").collapsible("disable");
+            $("#serviceCollapsible").collapsible("expand");
             $("#categoryErrorPopup").popup("open");
         } else {
             findAllServiceBySelectedCategories(cateArray).success(function (data) {
                 if(data.length == 0){
-                    $(serviceCollapsible).collapsible("collapse");
-                    $(serviceCollapsible).append("Sorry, no service found");
+                    $("#categoryErrorPopup").popup("open");
                 } else {
-                    $(categoryCollapsible).collapsible("collapse");
+                    //$(categoryCollapsible).collapsible("collapse");
                     for(var j=0; j < data.length;j++){
-                        $("#serviceFieldset").append(
+                        $("#serviceFieldset").text(
                             '<label for="'+data[j].serviceID+'">'+data[j].name+'</label>'+
                             '<input type="'+'checkbox'+'"'+' class="'+'serviceCheckbox'+'" id='+'"'+data[j].serviceID+'"'+' value="'+data[j].name+'">'
                         );
@@ -496,7 +497,7 @@
     /*Put new order to server*/
     var putOrder = function(requestOrder){
          return  $.ajax({
-            url: "",
+            url: URL+"/order",
             method: "POST",
             contentType: "application/json;charset=utf8",
             data: JSON.stringify(requestOrder),
@@ -512,24 +513,27 @@
         phone: phone,
         email: email
     };
-    var submit = $(":input[name='submit']]");
+    var submit = $(":input[name='submit']");
     var services = [1,2,3];
-    var timeObj = {time : time};
-    var today;
+    var artistObj = {
+        artistID: 1
+    };
+    var timeObj = {
+        time : time,
+        artist: artistObj
+    };
+
     submit.click(function () {
-         var order = {
+         var requestOrder = {
              services: services,
              time: timeObj,
              customer: customerObj,
-             orderDate: today
+             orderDate: getToday()
          };
+         putOrder(requestOrder);
+        console.log(requestOrder);
     });
 
-    /*$(categoryCollapsible).collapsible({
-        expand: function() {
-            $(serviceCollapsible).collapsible("collapse");
-        }
-    });*/
 
 </script>
 </html>
