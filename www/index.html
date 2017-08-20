@@ -6,28 +6,36 @@
     <meta name="viewport"
           content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
     <title>Welcome to iNails</title>
+    <link href="https://fonts.googleapis.com/css?family=Oswald:200,300,400,500,600,700&amp;subset=cyrillic,latin-ext,vietnamese" rel="stylesheet">
+    <link rel="stylesheet" href="css/index.css"/>
     <link rel="stylesheet" href="css/themes/iNails.min.css"/>
+    <link rel="stylesheet" href="js/jquery-mobile-datepicker-wrapper/jquery.mobile.datepicker.css"/>
+    <link rel="stylesheet" href="js/jquery-mobile-datepicker-wrapper/jquery.mobile.datepicker.theme.css" />
+
     <link rel="stylesheet" href="js/jquery/jquery.mobile.icons-1.4.5.css"/>
     <link rel="stylesheet" href="js/jquery/jquery.mobile.structure-1.4.5.css"/>
     <link rel="stylesheet" href="js/jquery/jquery.mobile-1.4.5.css"/>
     <link rel="stylesheet" href="css/themes/jquery.mobile.icons.min.css"/>
     <script src="js/jquery-1.11.1.js"></script>
     <script src="js/jquery/jquery.mobile-1.4.5.js"></script>
+    <script src="js/jquery-mobile-datepicker-wrapper/external/jquery-ui/datepicker.js"></script>
+    <script src="js/jquery-mobile-datepicker-wrapper/jquery.mobile.datepicker.js"></script>
 </head>
 <body>
 <!--Home page-->
 <div data-role="page" data-theme="a" id="home">
-    <div data-role="header" data-grid="b">
-        <ul data-position="inline">
-            <li data-position="center"><a
+    <div data-role="header" data-position="inline">
+        <div class="ui-grid-b">
+            <div class="ui-block-a" style="text-align: center"><a
                     class="ui-shadow ui-btn ui-corner-all ui-icon-bullets ui-btn-icon-notext ui-btn-inline">Button</a>
-            </li>
-            <li data-position="center"><a href="#home"
-                                          class="ui-shadow ui-btn ui-corner-all ui-icon-home ui-btn-icon-notext ui-btn-inline">Button</a>
-            </li>
-            <li data-position="center"><a
-                    class="ui-shadow ui-btn ui-corner-all ui-icon-gear ui-btn-icon-notext ui-btn-inline">Button</a></li>
-        </ul>
+            </div>
+            <div class="ui-block-b" style="text-align: center"><a href="#home"
+                                       class="ui-shadow ui-btn ui-corner-all ui-icon-home ui-btn-icon-notext ui-btn-inline">Button</a>
+            </div>
+            <div class="ui-block-c" style="text-align: center"><a
+                    class="ui-shadow ui-btn ui-corner-all ui-icon-gear ui-btn-icon-right ui-btn-icon-notext ui-btn-inline">Button</a>
+            </div>
+        </div>
     </div>
     <div data-role="content" data-theme="a">
         <button class="ui-bar-a"><a href="#reservation">Reservation</a></button>
@@ -43,14 +51,14 @@
     <!--Reservation header-->
     <div data-role="header" data-position="inline">
         <div class="ui-grid-b">
-            <div class="ui-block-a center"><a
+            <div class="ui-block-a" style="text-align: center"><a
                     class="ui-shadow ui-btn ui-corner-all ui-icon-bullets ui-btn-icon-notext ui-btn-inline">Button</a>
             </div>
-            <div class="ui-block-b"><a href="#home"
-                                       class="ui-shadow ui-btn ui-corner-all ui-icon-home ui-btn-icon-notext ui-btn-inline">Button</a>
+            <div class="ui-block-b" style="text-align: center"><a href="#home"
+                                                                  class="ui-shadow ui-btn ui-corner-all ui-icon-home ui-btn-icon-notext ui-btn-inline">Button</a>
             </div>
-            <div class="ui-block-c"><a
-                    class="ui-shadow ui-btn ui-corner-all ui-icon-gear ui-btn-icon-notext ui-btn-inline">Button</a>
+            <div class="ui-block-c" style="text-align: center"><a
+                    class="ui-shadow ui-btn ui-corner-all ui-icon-gear ui-btn-icon-right ui-btn-icon-notext ui-btn-inline">Button</a>
             </div>
         </div>
     </div>
@@ -60,27 +68,75 @@
             <!--Category collapsible-->
             <div data-role="collapsible" id="categoryCollapsible">
                 <h2>Category</h2>
-                <fieldset data-role="controlgroup" data-iconpos="right" id="fieldsetCategory">
-
-                </fieldset>
+                    <fieldset data-role="controlgroup" id="categoryFieldset">
+                        <!--fetch data from API into here-->
+                    </fieldset>
+                    <div class="ui-grid-a">
+                        <div class="ui-block-a"><button id="categorySelectBtn">Select</button></div>
+                    </div>
+                    <div data-role="popup" id="categoryErrorPopup">
+                        <p>Sorry, no service found</p>
+                    </div>
             </div>
             <!--Service collapsible-->
             <div data-role="collapsible" id="serviceCollapsible">
                 <h2>Service</h2>
-                <fieldset data-role="controlgroup" data-iconpos="right" id="fieldsetService">
-
+                <fieldset data-role="controlgroup"  id="serviceFieldset">
+                    <!--fetch data from API into here-->
                 </fieldset>
+                <div class="ui-grid-a">
+                    <div class="ui-block-a"><button id="serviceSelectBtn">Select</button></div>
+                </div>
             </div>
             <!--Artist collapsible-->
             <div data-role="collapsible" id="artistCollapsible">
                 <h2>Artist</h2>
-                <fieldset data-role="controlgroup" id="fieldsetArtist">
-
-                </fieldset>
+                    <select name="artistSelect" id="artistSelect">
+                        <!--get data from Rest API-->
+                    </select>
+            </div>
+            <!--Date collapsible-->
+            <div data-role="collapsible" id="dateCollapsible">
+                <h2>Time</h2>
+                <div class="ui-grid-a">
+                    <div class="ui-block-a">
+                        <input data-role="date" data-inline="false" name="dateInput">
+                    </div>
+                    <div class="ui-block-b">
+                        <select name="timeSelect" id="timeSelect">
+                            <option value="8">8:00</option>
+                            <option value="9">9:00</option>
+                            <option value="10">10:00</option>
+                            <option value="11">11:00</option>
+                            <option value="12">12:00</option>
+                            <option value="13">13:00</option>
+                            <option value="14">14:00</option>
+                            <option value="15">15:00</option>
+                            <option value="16">16:00</option>
+                            <option value="17">17:00</option>
+                            <option value="18">18:00</option>
+                            <option value="19">19:00</option>
+                            <option value="20">20:00</option>
+                        </select>
+                    </div>
+                </div>
+                <!--<input type="button" data-inline="true" value="select" id="dateSelectBtn" data-theme="b">-->
+                <a href="#timeConfirmPopup" data-rel="popup" data-position-to="window" data-transition="fade" class="ui-btn ui-corner-all ui-shadow ui-btn-inline">Select</a>
+                <!--Popup confirm time reservation-->
+                <div data-role="popup" id="timeConfirmPopup">
+                    <div data-role="header">
+                        <h4>Reservation</h4>
+                    </div>
+                    <h4>Are you want to select this time</h4>
+                    <div class="ui-grid-a" style="text-align: center">
+                      <a href="#" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-btn-b ui-icon-back ui-btn-icon-left" data-rel="back">No</a>
+                      <a href="#" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-btn-b ui-icon-carat-d ui-btn-icon-left" data-rel="back" id="yesTimeA">Yes</a>
+                    </div>
+                </div>
             </div>
             <!--Form collapsible-->
-            <div data-role="collapsible">
-                <h2>Customer's information</h2>
+            <div data-role="collapsible" id="formCollapsible">
+                <h2>Contact</h2>
                 <ul data-role="listview">
                     <li>
                         <label for="name">Name</label>
@@ -101,12 +157,12 @@
                     <li class="ui-body ui-body-a">
                         <fieldset class="ui-grid-a">
                             <div class="ui-block-a">
-                                <input type="button" value="Cancel"
+                                <input type="button" value="Cancel" name="cancel"
                                        class="ui-btn ui-icon-delete ui-btn-icon-left ui-corner-all ui-btn-a">
                             </div>
                             <div class="ui-block-b">
-                                <input type="button" value="Submit"
-                                       class="ui-btn ui-icon-arrow-d ui-btn-icon-right ui-corner-all ui-btn-a">
+                                <input type="button" value="Submit" name="submit"
+                                       class="ui-btn ui-icon-arrow-d ui-btn-icon-right ui-corner-all ui-btn-a" data-theme="b">
                             </div>
                         </fieldset>
                     </li>
@@ -122,16 +178,16 @@
 
 <!-- Tracking page -->
 <div data-role="page" data-theme="a" id="tracking">
-    <div data-role="header">
-        <div class="ui-grid-b center" data-position="inline">
-            <div class="ui-block-a"><a
+    <div data-role="header" data-position="inline">
+        <div class="ui-grid-b">
+            <div class="ui-block-a" style="text-align: center"><a
                     class="ui-shadow ui-btn ui-corner-all ui-icon-bullets ui-btn-icon-notext ui-btn-inline">Button</a>
             </div>
-            <div class="ui-block-b"><a href="#home"
-                                       class="ui-shadow ui-btn ui-corner-all ui-icon-home ui-btn-icon-notext ui-btn-inline">Button</a>
+            <div class="ui-block-b" style="text-align: center"><a href="#home"
+                                                                  class="ui-shadow ui-btn ui-corner-all ui-icon-home ui-btn-icon-notext ui-btn-inline">Button</a>
             </div>
-            <div class="ui-block-c"><a
-                    class="ui-shadow ui-btn ui-corner-all ui-icon-gear ui-btn-icon-notext ui-btn-inline">Button</a>
+            <div class="ui-block-c" style="text-align: center"><a
+                    class="ui-shadow ui-btn ui-corner-all ui-icon-gear ui-btn-icon-right ui-btn-icon-notext ui-btn-inline">Button</a>
             </div>
         </div>
     </div>
@@ -142,12 +198,12 @@
             <a id="trackBtn" href="#invoicePopup" data-rel="popup" data-transition="slideup" data-position-to="window"
                class="ui-btn ui-corner-all ui-shadow ui-icon-search ui-btn-icon-left ui-btn-a">Track</a>
         </div>
-        <div id="invoicePopup" data-role="popup" class="ui-corner-all" data-overlay-theme="a">
+        <div id="invoicePopup" data-role="popup" data-overlay-theme="a">
             <div data-role="header">
                 <h1>Invoice</h1>
             </div>
             <div role="main" class="ui-content">
-                <table data-role="table" class="ui-responsive">
+                <table data-role="table" class="ui-responsive" style="width: 400px; height:400px">
                     <thead>
                     <tr>
                         <th>Order number</th>
@@ -156,6 +212,10 @@
                     <tr>
                         <th>Order date</th>
                         <td id="orderDateTd" class="invoiceTd"></td>
+                    </tr>
+                    <tr>
+                        <th>Reservation time</th>
+                        <td id="reservationTimeTd" class="invoiceTd"></td>
                     </tr>
                     <tr>
                         <th>Status</th>
@@ -203,14 +263,14 @@
 <div data-role="page" data-theme="a" id="setting">
     <div data-role="header" data-position="inline">
         <div class="ui-grid-b">
-            <div class="ui-block-a"><a
+            <div class="ui-block-a" style="text-align: center"><a
                     class="ui-shadow ui-btn ui-corner-all ui-icon-bullets ui-btn-icon-notext ui-btn-inline">Button</a>
             </div>
-            <div class="ui-block-b"><a href="#home"
-                                       class="ui-shadow ui-btn ui-corner-all ui-icon-home ui-btn-icon-notext ui-btn-inline">Button</a>
+            <div class="ui-block-b" style="text-align: center"><a href="#home"
+                                                                  class="ui-shadow ui-btn ui-corner-all ui-icon-home ui-btn-icon-notext ui-btn-inline">Button</a>
             </div>
-            <div class="ui-block-c"><a
-                    class="ui-shadow ui-btn ui-corner-all ui-icon-gear ui-btn-icon-notext ui-btn-inline">Button</a>
+            <div class="ui-block-c" style="text-align: center"><a
+                    class="ui-shadow ui-btn ui-corner-all ui-icon-gear ui-btn-icon-right ui-btn-icon-notext ui-btn-inline">Button</a>
             </div>
         </div>
     </div>
@@ -218,13 +278,28 @@
         <h5>Copyright©inails.fi 2017</h5>
     </div>
 </div>
+<!--<script type="text/javascript" src="cordova.js"></script>-->
 <script type="text/javascript" src="js/index.js"></script>
-
 </body>
 <script>
+    $( document ).on("mobileinit",function(){
+           findAllCategory();
+           findAllArtist();
+        });
     /*Declare common variables*/
     //var URL = "https://inailsapi.herokuapp.com/rest/api";
     var URL = "http://localhost:8181/rest/api";
+    var serviceCollapsible = "#serviceCollapsible";
+    var categoryCollapsible = "#categoryCollapsible";
+    var categoryFieldset = "#categoryFieldset";
+    var time = $("#timeSelect").val();
+    var date = $(":input[name='dateInput']").val();
+    var name = $("#name").val();
+    var phone = $("#phone").val();
+    var address = $("#address").val();
+    var email = $("#email").val();
+
+
     /*Get month name*/
     var getMonthName = function (monthNumber) {
         var monthArray = [["01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"], ["January", "February", "March",
@@ -235,6 +310,16 @@
             if (monthNumber == monthArray[0][i])
                 return monthArray[1][i];
         }
+    };
+    /*Get today*/
+    var getToday = function () {
+        var today = new Date();
+        var year = today.getFullYear();
+        var month = today.getMonth()+1;
+        var day = today.getDate();
+        if(month < 10)
+            return (year+"-0"+month+"-"+day);
+        return (year+"-"+month+"-"+day);
     };
     /*Format date*/
     var formatDate = function (rawDate) {
@@ -302,6 +387,22 @@
         });
     };
 
+    /*Get time text AM nad PM*/
+    var getTimeText = function (timeStr) {
+        var timeLength = timeStr.length;
+        var getOuput = function (input) {
+            if(timeLength == 5){
+                return timeStr.substring(0,2);
+            } else {
+                return timeStr.substring(0,1);
+            }
+        };
+
+        if( 8 <= getOuput(timeStr) & getOuput(timeStr) <= 12 )
+            return "AM";
+        return "PM";
+    };
+
     /*Show order details details by given order number*/
     $("#trackBtn").on("click", function () {
         var orderNumber = $(':input[name="order-number"]').val();
@@ -313,9 +414,10 @@
                 $(".invoiceTd").text(" ");
                 $("#orderNumberTd").text(data.order.orderID);
                 $("#orderDateTd").text(formatDate(data.order.orderDate));
+                $("#reservationTimeTd").text(data.timeReservation.time+" "+getTimeText(data.timeReservation.time)+" -"+formatDate(data.timeReservation.date));
                 $("#orderStatusTd").text(data.status.name);
                 $("#servicesTd").text(data.services);
-                $("#artistNameTd").text(data.artist.name);
+                $("#artistNameTd").text(data.timeReservation.artist.name);
                 $("#totalPriceTd").text(data.totalPayment + "\u20AC");
                 $("#estimatedTimeTd").text(data.duration + " minutes");
                 $("#customerNameTd").text(data.customer.name);
@@ -323,33 +425,35 @@
             }
         });
     });
+
+
     /*Show category when expanded*/
-    $("#categoryCollapsible").collapsible({
+    $(categoryCollapsible).collapsible({
         expand: function (event, ui) {
-            $("#fieldsetCategory").html("");
+            $(categoryFieldset).html("");
             findAllCategory().success(function (data) {
                 if (data.isArray || data.length != 0) {
                     for (var j = 0; j < data.length; j++) {
-                        $("#fieldsetCategory").append(
-                        '<input type="checkbox" name="' + data[j].categoryID + '" id="' + data[j].categoryID + '">' +
-                        '<label for="' + data[j].categoryID + '">' + data[j].name + '</label>'
+                        $(categoryFieldset).append(
+                            '<label for="'+data[j].categoryID+'">'+data[j].name+'</label>'+
+                            '<input type="'+'checkbox'+'"'+' class="'+'categoryCheckbox'+'" id='+'"'+data[j].categoryID+'"'+' value="'+data[j].categoryID+'">'
                         );
                     }
-
                 }
             });
         },
     });
 
-    /*Show service list with selected categories*/
-    $("#serviceCollapsible").collapsible({
-        expand: function (event, ui) {
-            $("#fieldsetService").html("");
-            findAllServiceBySelectedCategories([1,2,3]).success(function (data) {
+
+
+    $("#artistCollapsible").collapsible({
+        expand: function (event,ui) {
+            $("#artistSelect").html("");
+            findAllArtist().success(function (data) {
                 if(data.isArray || data.length != 0){
                     for(var i=0; i < data.length; i++) {
-                        $("#fieldsetService").append(
-                            data[i].name
+                        $("#artistSelect").append(
+                            '<option value="'+data[i].artistID+'">'+data[i].name+'</option>'
                         );
                     }
                 }
@@ -357,20 +461,75 @@
         }
     });
 
-    $("#artistCollapsible").collapsible({
-        expand: function (event,ui) {
-            $("#fieldsetArtist").html("");
-            findAllArtist().success(function (data) {
-                if(data.isArray || data.length != 0){
-                    for(var i=0; i < data.length; i++) {
-                        $("#fieldsetArtist").append(
-                            data[i].name
+    /*Handle select time event*/
+    $("#yesTimeA").click(function () {
+        $("#formCollapsible").collapsible("expand");
+    });
+
+    $("#categorySelectBtn").click(function () {
+        $(serviceCollapsible).html("");
+        var cateArray = [];
+        $("input.categoryCheckbox:checked").each(function () {
+            cateArray.push(this.value);
+        });
+        if(cateArray.length == 0){
+            $("#serviceCollapsible").collapsible("disable");
+            $("#categoryErrorPopup").popup("open");
+        } else {
+            findAllServiceBySelectedCategories(cateArray).success(function (data) {
+                if(data.length == 0){
+                    $(serviceCollapsible).collapsible("collapse");
+                    $(serviceCollapsible).append("Sorry, no service found");
+                } else {
+                    $(categoryCollapsible).collapsible("collapse");
+                    for(var j=0; j < data.length;j++){
+                        $("#serviceFieldset").append(
+                            '<label for="'+data[j].serviceID+'">'+data[j].name+'</label>'+
+                            '<input type="'+'checkbox'+'"'+' class="'+'serviceCheckbox'+'" id='+'"'+data[j].serviceID+'"'+' value="'+data[j].name+'">'
                         );
                     }
                 }
-            })
+            });
         }
     });
+
+    /*Put new order to server*/
+    var putOrder = function(requestOrder){
+         return  $.ajax({
+            url: "",
+            method: "POST",
+            contentType: "application/json;charset=utf8",
+            data: JSON.stringify(requestOrder),
+            error: function (data) {
+                alert("Something gone wrong, try again!");
+            }
+        })
+    };
+
+    var customerObj = {
+        name: name,
+        address: address,
+        phone: phone,
+        email: email
+    };
+    var submit = $(":input[name='submit']]");
+    var services = [1,2,3];
+    var timeObj = {time : time};
+    var today;
+    submit.click(function () {
+         var order = {
+             services: services,
+             time: timeObj,
+             customer: customerObj,
+             orderDate: today
+         };
+    });
+
+    /*$(categoryCollapsible).collapsible({
+        expand: function() {
+            $(serviceCollapsible).collapsible("collapse");
+        }
+    });*/
 
 </script>
 </html>

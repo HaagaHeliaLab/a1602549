@@ -20,3 +20,29 @@ console.log(formatDate(str));
 var array = [1,2,3];
 console.log(array.toString());
 console.log([1,2,3].toString());
+
+var getTimeText = function (timeStr) {
+    var timeLength = timeStr.length;
+    var getOuput = function (input) {
+        if(timeLength == 5){
+            return timeStr.substring(0,2);
+        } else {
+             return timeStr.substring(0,1);
+        }
+    };
+
+    if( 8 <= getOuput(timeStr) & getOuput(timeStr) <= 12 )
+            return "AM";
+            return "PM";
+    };
+var getToday = function () {
+    var today = new Date();
+    var year = today.getFullYear();
+    var month = today.getMonth()+1;
+    var day = today.getDate();
+    if(month < 10)
+      return (year+"-0"+month+"-"+day);
+    return (year+"-"+month+"-"+day);
+};
+
+console.log(getToday());
